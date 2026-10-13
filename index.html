@@ -150,7 +150,7 @@
 
 <div class="container">
     <h2>SUT 戰術口令辨識生成器</h2>
-    <div class="section-desc">自動化產生互不聯想之口令（Challenge & Password），確保夜間敵我識別安全。</div>
+    <div class="section-desc">已全面排除軍事術語，改用隨機日常詞彙，降低戰術意圖暴露風險。</div>
 
     <div class="config-group">
         <label for="timeSlot">時效設定：</label>
@@ -182,17 +182,17 @@
 </div>
 
 <script>
-    // 獨立詞庫設計（確保字數短、發音清晰、無直接語意關聯）
+    // 嚴格過濾軍事術語，改為生活化、發音獨立的日常詞庫
     const poolA = [
-        "鐵錘", "閃電", "獵鷹", "奔狼", "黑熊", 
-        "荒野", "風暴", "利刃", "磐石", "鐵騎", 
-        "銀狐", "冰川", "赤焰", "叢林", "戰斧"
+        "拖鞋", "杯子", "雨傘", "牙刷", "毛巾", 
+        "窗戶", "時鐘", "筆記", "枕頭", "地毯", 
+        "鏡子", "鉛筆", "書包", "外套", "水壺"
     ];
 
     const poolB = [
-        "地平線", "三角洲", "信號旗", "北極星", "指南針", 
-        "深邃谷", "回音壁", "防禦線", "集結點", "九號樁", 
-        "孤立樹", "岩石區", "撤退道", "老鷹巢", "界線標"
+        "西瓜", "餅乾", "蘋果", "牛奶", "香蕉", 
+        "麵包", "茶杯", "草莓", "葡萄", "米飯", 
+        "可樂", "檸檬", "花生", "洋蔥", "蛋捲"
     ];
 
     function getRandomItem(arr) {
@@ -200,20 +200,16 @@
     }
 
     function generatePassword() {
-        // 隨機抽樣
         let challenge = getRandomItem(poolA);
         let password = getRandomItem(poolB);
 
-        // 確保前後詞彙不會因為隨機重複（雖然機率低）
         while (challenge === password) {
             password = getRandomItem(poolB);
         }
 
-        // 取得時段名稱
         const timeSelect = document.getElementById("timeSlot");
         const timeText = timeSelect.options[timeSelect.selectedIndex].text;
 
-        // 顯示結果
         document.getElementById("resTime").innerText = timeText;
         document.getElementById("resChallenge").innerText = challenge;
         document.getElementById("resPassword").innerText = password;
@@ -223,4 +219,4 @@
 </script>
 
 </body>
-</html># pas
+</html>
